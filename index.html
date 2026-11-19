@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Parish Hub</title>
+  <meta name="description" content="Mass times, events, prayer requests and volunteering for our local church community.">
+  <meta name="theme-color" content="#1f3a33">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="top">
+    <div class="wrap top__row">
+      <a href="#" class="brand" aria-label="Home">
+        <img src="icon.svg" alt="" width="32" height="32">
+        <span data-bind="name">Parish</span>
+      </a>
+      <nav class="nav" aria-label="Sections">
+        <a href="#times">Mass times</a>
+        <a href="#events">Events</a>
+        <a href="#prayer">Prayer</a>
+        <a href="#serve">Serve</a>
+        <a href="#visit">Visit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero__grid">
+        <div>
+          <p class="eyebrow">Welcome</p>
+          <h1 class="hero__title" data-bind="tagline">A home for everyone.</h1>
+          <p class="hero__lead">Mass times, what's on this week, a place to share prayer intentions and ways to help — all in one place for <span data-bind="name"></span>.</p>
+        </div>
+        <aside class="next" aria-live="polite">
+          <p class="next__label">Next Mass</p>
+          <p class="next__title" id="nextTitle">—</p>
+          <p class="next__when" id="nextWhen"></p>
+          <p class="next__count" id="nextCount"></p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ANNOUNCEMENTS -->
+    <section class="band" aria-label="Announcements">
+      <div class="wrap">
+        <ul class="ticker" id="announcements"></ul>
+      </div>
+    </section>
+
+    <!-- TIMES -->
+    <section id="times" class="section">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Mass times</h2>
+          <p>Today is highlighted.</p>
+        </div>
+        <div class="week" id="week"></div>
+      </div>
+    </section>
+
+    <!-- EVENTS -->
+    <section id="events" class="section section--tint">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>What's on</h2>
+          <div class="chips" id="filters" role="group" aria-label="Filter events"></div>
+        </div>
+        <ol class="events" id="eventList"></ol>
+        <p class="empty" id="eventsEmpty" hidden>No upcoming events in this category.</p>
+      </div>
+    </section>
+
+    <!-- PRAYER -->
+    <section id="prayer" class="section">
+      <div class="wrap prayer">
+        <div>
+          <div class="section__head section__head--stack">
+            <h2>Prayer wall</h2>
+            <p>Share an intention. Others can tap <em>“I prayed”</em> to let you know you're held in prayer.</p>
+          </div>
+          <form class="card form" id="prayerForm">
+            <label><span>Your name <span class="opt">(optional)</span></span>
+              <input name="name" maxlength="40" autocomplete="given-name" placeholder="Anonymous">
+            </label>
+            <label>Intention
+              <textarea name="text" maxlength="280" rows="4" required placeholder="Please pray for…"></textarea>
+            </label>
+            <div class="form__row">
+              <span class="hint" id="charCount">0 / 280</span>
+              <button class="btn" type="submit">Share intention</button>
+            </div>
+          </form>
+          <p class="note">Intentions are saved on this device only. Nothing is sent to a server.</p>
+        </div>
+        <ul class="wall" id="wall" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <!-- SERVE -->
+    <section id="serve" class="section section--tint">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>Serve with us</h2>
+          <p>Pick what you'd like to help with — we'll prepare an email to the parish office for you.</p>
+        </div>
+        <form id="serveForm">
+          <div class="roles" id="roles"></div>
+          <div class="card form form--inline">
+            <label>Name <input name="name" required autocomplete="name"></label>
+            <label>Phone or email <input name="contact" required autocomplete="email"></label>
+            <button class="btn" type="submit">Send to the office</button>
+          </div>
+          <p class="hint" id="serveMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- VISIT -->
+    <section id="visit" class="section">
+      <div class="wrap visit">
+        <div>
+          <h2>Visit &amp; contact</h2>
+          <dl class="facts">
+            <dt>Address</dt><dd data-bind="address"></dd>
+            <dt>Office</dt><dd data-bind="officeHours"></dd>
+            <dt>Phone</dt><dd><a data-bind="phone" id="phoneLink"></a></dd>
+            <dt>Email</dt><dd><a data-bind="email" id="emailLink"></a></dd>
+          </dl>
+          <a class="btn btn--ghost" id="dirLink" target="_blank" rel="noopener">Get directions</a>
+        </div>
+        <div class="card quote">
+          <p>“For where two or three gather in my name, there am I with them.”</p>
+          <span>Matthew 18:20</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap"><span data-bind="name"></span> · Made with care for our community</div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
